@@ -1,0 +1,2 @@
+Spustiť aplikáciu;4. 10. 2016;false
+Vylepšiť aplikáciu;11. 10. 2016;false
