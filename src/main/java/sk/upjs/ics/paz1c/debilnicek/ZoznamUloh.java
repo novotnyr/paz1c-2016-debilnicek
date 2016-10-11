@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-class ZoznamUloh {
+class ZoznamUloh implements UlohaDao {
     private List<Uloha> ulohy = new ArrayList<>();
 
     public ZoznamUloh() {
@@ -22,13 +22,12 @@ class ZoznamUloh {
         ulohy.add(uloha2);
         
     }
-
     
-    List<Uloha> dajUlohy() {
+    public List<Uloha> dajUlohy() {
         return ulohy;
     }
 
-    void pridaj(Uloha uloha) {
+    public void pridaj(Uloha uloha) {
         ulohy.add(uloha);
     }
 
