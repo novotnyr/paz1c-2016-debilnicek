@@ -13,9 +13,7 @@ import java.util.List;
  */
 public class ZoznamUlohForm extends javax.swing.JFrame {
     
-    // private ZoznamUloh zoznamUloh = new ZoznamUloh();
-    
-    private UlohaDao zoznamUloh = new SuborovyUlohaDao();
+    private UlohaDao zoznamUloh = UlohaDaoFactory.INSTANCE.getUlohaDao();
 
     /**
      * Creates new form ZoznamUlohForm
@@ -27,13 +25,10 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
     }
 
     private void aktualizovatZoznamUloh() {
-        List<Uloha> ulohy = zoznamUloh.dajUlohy();
-        String[] popisyUloh = new String[ulohy.size()];
-        for(int i = 0; i < ulohy.size(); i++) {
-            popisyUloh[i] = ulohy.get(i).getPopis();
-        }
-        
-        zoznamUlohList.setListData(popisyUloh);
+        // ziskaj model
+        UlohaTableModel model = (UlohaTableModel) ulohyTable.getModel();        
+        // aktualizuj ho
+        model.aktualizovat();
     }
 
     /**
@@ -45,20 +40,13 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        zoznamUlohList = new javax.swing.JList<>();
         popisUlohyTextField = new javax.swing.JTextField();
         pridatUlohuButton = new javax.swing.JButton();
         odstranitButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ulohyTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        zoznamUlohList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(zoznamUlohList);
 
         popisUlohyTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +62,15 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
         });
 
         odstranitButton.setText("Odstrániť");
+        odstranitButton.setEnabled(false);
+        odstranitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                odstranitButtonActionPerformed(evt);
+            }
+        });
+
+        ulohyTable.setModel(new UlohaTableModel());
+        jScrollPane2.setViewportView(ulohyTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,11 +79,11 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(popisUlohyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(pridatUlohuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pridatUlohuButton, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(odstranitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -100,8 +97,8 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
                     .addComponent(pridatUlohuButton)
                     .addComponent(odstranitButton))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,6 +118,10 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
         
         aktualizovatZoznamUloh();
     }//GEN-LAST:event_pridatUlohuButtonActionPerformed
+
+    private void odstranitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_odstranitButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_odstranitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,10 +159,10 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton odstranitButton;
     private javax.swing.JTextField popisUlohyTextField;
     private javax.swing.JButton pridatUlohuButton;
-    private javax.swing.JList<String> zoznamUlohList;
+    private javax.swing.JTable ulohyTable;
     // End of variables declaration//GEN-END:variables
 }
