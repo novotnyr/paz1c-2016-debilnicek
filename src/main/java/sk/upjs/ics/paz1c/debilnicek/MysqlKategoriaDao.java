@@ -1,8 +1,12 @@
 package sk.upjs.ics.paz1c.debilnicek;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 
 public class MysqlKategoriaDao implements KategoriaDao {
@@ -30,7 +34,9 @@ public class MysqlKategoriaDao implements KategoriaDao {
 
     @Override
     public void uloz(Kategoria kategoria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "INSERT INTO kategoria VALUES (?, ?)";
+             
+        jdbcTemplate.update(sql, null, kategoria.getNazov());
     }
     
 }

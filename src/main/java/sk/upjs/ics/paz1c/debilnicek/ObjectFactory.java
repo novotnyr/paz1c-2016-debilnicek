@@ -8,6 +8,8 @@ public enum ObjectFactory {
     
     private JdbcTemplate jdbcTemplate;
     
+    private KategoriaDao kategoriaDao;
+    
     public JdbcTemplate getJdbcTemplate() {
         if (jdbcTemplate == null) {
             MysqlDataSource dataSource = new MysqlDataSource();
@@ -17,5 +19,12 @@ public enum ObjectFactory {
             jdbcTemplate = new JdbcTemplate(dataSource);
         }
         return jdbcTemplate;        
+    }
+    
+    public KategoriaDao getKategoriaDao() {
+        if (kategoriaDao == null) {
+            kategoriaDao = new MysqlKategoriaDao(getJdbcTemplate());            
+        }
+        return kategoriaDao;
     }
 }

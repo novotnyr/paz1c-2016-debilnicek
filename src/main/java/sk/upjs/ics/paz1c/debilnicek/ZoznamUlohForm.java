@@ -45,6 +45,8 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
         odstranitButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         ulohyTable = new javax.swing.JTable();
+        pridatKategoriuButton = new javax.swing.JButton();
+        kategoriaComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +74,15 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
         ulohyTable.setModel(new UlohaTableModel());
         jScrollPane2.setViewportView(ulohyTable);
 
+        pridatKategoriuButton.setText("Pridať kategóriu...");
+        pridatKategoriuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pridatKategoriuButtonActionPerformed(evt);
+            }
+        });
+
+        kategoriaComboBox.setModel(new KategoriaComboBoxModel());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,11 +92,16 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(popisUlohyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(popisUlohyTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                            .addComponent(kategoriaComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(pridatUlohuButton, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(odstranitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pridatKategoriuButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pridatUlohuButton, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(odstranitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -96,8 +112,12 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
                     .addComponent(popisUlohyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pridatUlohuButton)
                     .addComponent(odstranitButton))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pridatKategoriuButton)
+                    .addComponent(kategoriaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -122,6 +142,14 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
     private void odstranitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_odstranitButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_odstranitButtonActionPerformed
+
+    private void pridatKategoriuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pridatKategoriuButtonActionPerformed
+        KategoriaForm kategoriaForm = new KategoriaForm(this, true);
+        kategoriaForm.setVisible(true);
+      
+        //----
+        ( (KategoriaComboBoxModel) kategoriaComboBox.getModel() ).refresh();
+    }//GEN-LAST:event_pridatKategoriuButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,8 +188,10 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JComboBox<Kategoria> kategoriaComboBox;
     private javax.swing.JButton odstranitButton;
     private javax.swing.JTextField popisUlohyTextField;
+    private javax.swing.JButton pridatKategoriuButton;
     private javax.swing.JButton pridatUlohuButton;
     private javax.swing.JTable ulohyTable;
     // End of variables declaration//GEN-END:variables

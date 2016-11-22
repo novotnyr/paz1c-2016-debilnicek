@@ -27,12 +27,20 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane2" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="popisUlohyTextField" min="-2" pref="279" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="popisUlohyTextField" pref="279" max="32767" attributes="0"/>
+                          <Component id="kategoriaComboBox" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="pridatUlohuButton" pref="186" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="odstranitButton" min="-2" pref="81" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="pridatKategoriuButton" alignment="1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="pridatUlohuButton" pref="186" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="odstranitButton" min="-2" pref="81" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -48,8 +56,13 @@
                   <Component id="pridatUlohuButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="odstranitButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="417" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="pridatKategoriuButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="kategoriaComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="387" max="-2" attributes="0"/>
               <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -94,5 +107,23 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="pridatKategoriuButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Prida&#x165; kateg&#xf3;riu..."/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pridatKategoriuButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="kategoriaComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new KategoriaComboBoxModel()" type="code"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Kategoria&gt;"/>
+      </AuxValues>
+    </Component>
   </SubComponents>
 </Form>

@@ -33,7 +33,12 @@ public class Kategoria {
     public void setUlohy(List<Uloha> ulohy) {
         this.ulohy = ulohy;
     }
+
+    @Override
+    public String toString() {
+        return nazov;
+    }
    
    
-   
+    
 }
