@@ -5,6 +5,8 @@
  */
 package sk.upjs.ics.paz1c.debilnicek;
 
+import java.awt.Frame;
+
 /**
  *
  * @author student
@@ -22,6 +24,15 @@ public class KategoriaForm extends javax.swing.JDialog {
         initComponents();
         
         kategoria = new Kategoria();
+        
+        nazovText.setText(kategoria.getNazov());
+    }
+    
+    public KategoriaForm(Kategoria kategoria, Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        
+        this.kategoria = kategoria;
         
         nazovText.setText(kategoria.getNazov());
     }

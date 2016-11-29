@@ -34,11 +34,15 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="pridatKategoriuButton" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="pridatUlohuButton" pref="186" max="32767" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="odstranitButton" min="-2" pref="81" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="pridatKategoriuButton" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="upravitKategoriuButton" min="-2" pref="137" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -60,6 +64,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="pridatKategoriuButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="kategoriaComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="upravitKategoriuButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="387" max="-2" attributes="0"/>
@@ -124,6 +129,14 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Kategoria&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="upravitKategoriuButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Upravi&#x165; kateg&#xf3;riu..."/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="upravitKategoriuButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

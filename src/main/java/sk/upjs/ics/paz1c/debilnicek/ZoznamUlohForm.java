@@ -47,6 +47,7 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
         ulohyTable = new javax.swing.JTable();
         pridatKategoriuButton = new javax.swing.JButton();
         kategoriaComboBox = new javax.swing.JComboBox<>();
+        upravitKategoriuButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +84,13 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
 
         kategoriaComboBox.setModel(new KategoriaComboBoxModel());
 
+        upravitKategoriuButton.setText("Upraviť kategóriu...");
+        upravitKategoriuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upravitKategoriuButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,11 +105,14 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
                             .addComponent(kategoriaComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pridatKategoriuButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(pridatUlohuButton, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(odstranitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(odstranitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pridatKategoriuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(upravitKategoriuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -115,7 +126,8 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pridatKategoriuButton)
-                    .addComponent(kategoriaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(kategoriaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(upravitKategoriuButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
@@ -150,6 +162,17 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
         //----
         ( (KategoriaComboBoxModel) kategoriaComboBox.getModel() ).refresh();
     }//GEN-LAST:event_pridatKategoriuButtonActionPerformed
+
+    private void upravitKategoriuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upravitKategoriuButtonActionPerformed
+        // entita vybrana v combo boxe
+        Kategoria vybranaKategoria = (Kategoria) kategoriaComboBox.getSelectedItem();
+        // zobraz modalny dialog
+        
+        KategoriaForm kategoriaForm = new KategoriaForm(vybranaKategoria, this, true);
+        kategoriaForm.setVisible(true);
+        
+        
+    }//GEN-LAST:event_upravitKategoriuButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,5 +217,6 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
     private javax.swing.JButton pridatKategoriuButton;
     private javax.swing.JButton pridatUlohuButton;
     private javax.swing.JTable ulohyTable;
+    private javax.swing.JButton upravitKategoriuButton;
     // End of variables declaration//GEN-END:variables
 }

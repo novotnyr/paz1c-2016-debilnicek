@@ -6,7 +6,7 @@ import javax.swing.table.AbstractTableModel;
 public class UlohaTableModel extends AbstractTableModel {
     private UlohaDao ulohaDao = UlohaDaoFactory.INSTANCE.getUlohaDao();
     
-    private static final String[] NAZVY_STLPCOV = { "Popis", "Termín", "Stav" };
+    private static final String[] NAZVY_STLPCOV = { "Popis", "Termín", "Stav", "Kategória" };
 
     private static final int POCET_STLPCOV = NAZVY_STLPCOV.length;
     
@@ -36,6 +36,8 @@ public class UlohaTableModel extends AbstractTableModel {
                 }
             case 2:
                 return uloha.isStav();
+            case 3:
+                return uloha.getKategoria().getNazov();
             default:
                 return "???";
         }

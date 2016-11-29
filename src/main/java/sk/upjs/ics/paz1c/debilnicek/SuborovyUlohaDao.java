@@ -40,4 +40,10 @@ public class SuborovyUlohaDao implements UlohaDao {
             e.printStackTrace();
         } 
     }
+
+    @Override
+    public List<Uloha> najdiPodlaKategorie(Kategoria kategoria) {
+        // TODO implementovat
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

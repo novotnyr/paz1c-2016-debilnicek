@@ -20,4 +20,16 @@ public class MysqlUlohaDaoTest {
         assertTrue(result.size()>0);
     }
     
+    @Test
+    public void testNajdiUlohyPodlaKategorie() {
+        UlohaDao instance = UlohaDaoFactory.INSTANCE.getUlohaDao();
+        
+        Kategoria kategoria = new Kategoria();
+        kategoria.setId(0L);
+        
+        List<Uloha> uloha = instance.najdiPodlaKategorie(kategoria);
+        
+        assertTrue(uloha.size() > 0);
+    }
+    
 }

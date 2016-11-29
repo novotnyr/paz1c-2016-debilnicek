@@ -11,6 +11,8 @@ public class Uloha {
     
     private boolean stav;
 
+    private Kategoria kategoria;
+    
     public Long getId() {
         return id;
     }
@@ -42,6 +44,14 @@ public class Uloha {
 
     public void setStav(boolean stav) {
         this.stav = stav;
+    }
+
+    public Kategoria getKategoria() {
+        return kategoria;
+    }
+
+    public void setKategoria(Kategoria kategoria) {
+        this.kategoria = kategoria;
     }
     
     

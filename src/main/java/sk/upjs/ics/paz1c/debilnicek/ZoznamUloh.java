@@ -41,4 +41,10 @@ class ZoznamUloh implements UlohaDao {
         return ulohyDoTerminu;
     }
 
+    @Override
+    public List<Uloha> najdiPodlaKategorie(Kategoria kategoria) {
+        // TODO implementovat
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

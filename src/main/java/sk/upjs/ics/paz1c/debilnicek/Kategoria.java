@@ -8,8 +8,6 @@ public class Kategoria {
     
     private String nazov;
    
-    private List<Uloha> ulohy = new ArrayList<>();
-
     public Long getId() {
         return id;
     }
@@ -24,14 +22,6 @@ public class Kategoria {
 
     public void setNazov(String nazov) {
         this.nazov = nazov;
-    }
-
-    public List<Uloha> getUlohy() {
-        return ulohy;
-    }
-
-    public void setUlohy(List<Uloha> ulohy) {
-        this.ulohy = ulohy;
     }
 
     @Override

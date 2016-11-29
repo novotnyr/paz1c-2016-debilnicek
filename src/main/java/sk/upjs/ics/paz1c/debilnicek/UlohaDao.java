@@ -7,5 +7,6 @@ public interface UlohaDao {
     List<Uloha> dajUlohy();
 
     void pridaj(Uloha uloha);
-    
+
+    List<Uloha> najdiPodlaKategorie(Kategoria kategoria);    
 }

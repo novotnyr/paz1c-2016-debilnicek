@@ -34,9 +34,14 @@ public class MysqlKategoriaDao implements KategoriaDao {
 
     @Override
     public void uloz(Kategoria kategoria) {
-        String sql = "INSERT INTO kategoria VALUES (?, ?)";
-             
-        jdbcTemplate.update(sql, null, kategoria.getNazov());
+        if (kategoria.getId() == null) {
+            String sql = "INSERT INTO kategoria VALUES (?, ?)";             
+            jdbcTemplate.update(sql, null, kategoria.getNazov());            
+        } else {
+            String sql = "UPDATE kategoria SET nazov = ? WHERE id = ?";
+            jdbcTemplate.update(sql, kategoria.getNazov(), kategoria.getId());
+        }
+        
     }
     
 }

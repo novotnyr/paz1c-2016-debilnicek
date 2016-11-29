@@ -8,4 +8,5 @@ public interface KategoriaDao {
     public Kategoria najdiPodlaId(Long id);
     
     public void uloz(Kategoria kategoria);
+    
 }
