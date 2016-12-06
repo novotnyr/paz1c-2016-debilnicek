@@ -61,4 +61,8 @@ public class UlohaTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
     
+    public Uloha getUlohaAt(int riadok) {
+        return ulohaDao.dajUlohy().get(riadok);
+    }
+    
 }

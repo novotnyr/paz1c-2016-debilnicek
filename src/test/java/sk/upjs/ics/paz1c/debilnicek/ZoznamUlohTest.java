@@ -24,7 +24,7 @@ public class ZoznamUlohTest {
         uloha.setTermin(new Date(2016 - 1900, Calendar.JANUARY, 1));
         
         int pocetUloh = zoznamUloh.dajUlohy().size();
-        zoznamUloh.pridaj(uloha);
+        zoznamUloh.saveOrUpdate(uloha);
         
         int pocetUlohPoPridani = zoznamUloh.dajUlohy().size();
         

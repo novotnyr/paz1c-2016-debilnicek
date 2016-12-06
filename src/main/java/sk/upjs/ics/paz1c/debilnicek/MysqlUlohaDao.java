@@ -31,9 +31,22 @@ public class MysqlUlohaDao implements UlohaDao {
     }
 
     @Override
-    public void pridaj(Uloha uloha) {
-        jdbcTemplate.update("INSERT INTO uloha (popis, termin, stav) VALUES(?,?,?)",
-                uloha.getPopis(), uloha.getTermin(), uloha.isStav());
+    public void saveOrUpdate(Uloha uloha) {
+        if (uloha.getId() == null) {
+        
+            jdbcTemplate.update("INSERT INTO uloha (popis, termin, stav, kategoria_id) VALUES(?,?,?,?)",
+                    uloha.getPopis(), uloha.getTermin(), uloha.isStav(), uloha.getKategoria().getId());
+        } else {
+            String sql = "UPDATE uloha SET popis = ?, termin = ?, stav = ?, kategoria_id = ? WHERE id = ?";
+            
+            jdbcTemplate.update(sql, 
+                    uloha.getPopis(), 
+                    uloha.getTermin(), 
+                    uloha.isStav(), 
+                    uloha.getKategoria().getId(), 
+                    uloha.getId());
+        }
+        
     }
 
     @Override

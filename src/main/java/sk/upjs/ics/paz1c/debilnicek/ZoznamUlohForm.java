@@ -5,6 +5,7 @@
  */
 package sk.upjs.ics.paz1c.debilnicek;
 
+import java.awt.Point;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class ZoznamUlohForm extends javax.swing.JFrame {
     
-    private UlohaDao zoznamUloh = UlohaDaoFactory.INSTANCE.getUlohaDao();
+    private UlohaDao ulohaDao = UlohaDaoFactory.INSTANCE.getUlohaDao();
 
     /**
      * Creates new form ZoznamUlohForm
@@ -73,6 +74,11 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
         });
 
         ulohyTable.setModel(new UlohaTableModel());
+        ulohyTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ulohyTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(ulohyTable);
 
         pridatKategoriuButton.setText("Pridať kategóriu...");
@@ -97,23 +103,21 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(popisUlohyTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                    .addComponent(kategoriaComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(popisUlohyTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                            .addComponent(kategoriaComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(pridatUlohuButton, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(odstranitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(pridatKategoriuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(upravitKategoriuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(pridatUlohuButton, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(odstranitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pridatKategoriuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(upravitKategoriuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addComponent(jScrollPane2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,9 +132,9 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
                     .addComponent(pridatKategoriuButton)
                     .addComponent(kategoriaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(upravitKategoriuButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -144,9 +148,10 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
         String popisUlohy = popisUlohyTextField.getText();
         
         Uloha uloha = new Uloha();
-        uloha.setPopis(popisUlohy);
+        uloha.setPopis(popisUlohy);        
+        uloha.setKategoria(dajVybranuKategoriu());
         
-        zoznamUloh.pridaj(uloha);
+        ulohaDao.saveOrUpdate(uloha);
         
         aktualizovatZoznamUloh();
     }//GEN-LAST:event_pridatUlohuButtonActionPerformed
@@ -164,15 +169,30 @@ public class ZoznamUlohForm extends javax.swing.JFrame {
     }//GEN-LAST:event_pridatKategoriuButtonActionPerformed
 
     private void upravitKategoriuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upravitKategoriuButtonActionPerformed
-        // entita vybrana v combo boxe
-        Kategoria vybranaKategoria = (Kategoria) kategoriaComboBox.getSelectedItem();
-        // zobraz modalny dialog
+        Kategoria vybranaKategoria = dajVybranuKategoriu();
         
         KategoriaForm kategoriaForm = new KategoriaForm(vybranaKategoria, this, true);
         kategoriaForm.setVisible(true);
         
-        
+        aktualizovatZoznamUloh();
     }//GEN-LAST:event_upravitKategoriuButtonActionPerformed
+
+    private void ulohyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ulohyTableMouseClicked
+        if ( evt.getClickCount() == 2) {
+            int riadok = ulohyTable.getSelectedRow();
+            Uloha uloha = ((UlohaTableModel) ulohyTable.getModel()).getUlohaAt(riadok);
+            
+            UlohaForm ulohaForm = new UlohaForm(this, uloha);
+            ulohaForm.setVisible(true);
+            
+            aktualizovatZoznamUloh();
+        }
+    }//GEN-LAST:event_ulohyTableMouseClicked
+
+    private Kategoria dajVybranuKategoriu() {
+        Kategoria vybranaKategoria = (Kategoria) kategoriaComboBox.getSelectedItem();
+        return vybranaKategoria;
+    }
 
     /**
      * @param args the command line arguments

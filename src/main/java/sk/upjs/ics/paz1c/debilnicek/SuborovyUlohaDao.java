@@ -32,7 +32,7 @@ public class SuborovyUlohaDao implements UlohaDao {
     }
 
     @Override
-    public void pridaj(Uloha uloha) {
+    public void saveOrUpdate(Uloha uloha) {
         try(FileWriter writer = new FileWriter(new File("ulohy.txt"), true)) {
             // TODO zapisovat aktualny datum
             writer.append(uloha.getPopis() + ";11. 10. 2016;" + uloha.isStav() + "\n");

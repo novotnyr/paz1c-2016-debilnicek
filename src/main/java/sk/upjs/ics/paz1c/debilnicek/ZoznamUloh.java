@@ -27,7 +27,7 @@ class ZoznamUloh implements UlohaDao {
         return ulohy;
     }
 
-    public void pridaj(Uloha uloha) {
+    public void saveOrUpdate(Uloha uloha) {
         ulohy.add(uloha);
     }
 
