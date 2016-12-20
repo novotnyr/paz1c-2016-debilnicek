@@ -1,6 +1,6 @@
 package sk.upjs.ics.paz1c.debilnicek;
 
-import com.mysql.cj.jdbc.MysqlDataSource;
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public enum UlohaDaoFactory {

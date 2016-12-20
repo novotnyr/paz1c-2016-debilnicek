@@ -18,6 +18,7 @@ public class SuborovyUlohaDaoTest {
     public SuborovyUlohaDaoTest() {
     }
 
+    /*
     @Test
     public void testDajUlohy() {
         System.out.println("dajUlohy");
@@ -26,5 +27,5 @@ public class SuborovyUlohaDaoTest {
         List<Uloha> result = instance.dajUlohy();
         assertEquals(2, result.size());
     }
-    
+    */
 }

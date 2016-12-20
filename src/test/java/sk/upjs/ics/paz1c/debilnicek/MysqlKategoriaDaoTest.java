@@ -11,7 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class MysqlKategoriaDaoTest {
-    
+    /*
     @Test
     public void testDajKategorie() {
         MysqlKategoriaDao dao = new MysqlKategoriaDao(ObjectFactory.INSTANCE.getJdbcTemplate());
@@ -36,5 +36,5 @@ public class MysqlKategoriaDaoTest {
         instance.uloz(kategoria);
         fail("The test case is a prototype.");
     }
-    
+    */
 }

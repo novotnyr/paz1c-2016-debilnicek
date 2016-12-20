@@ -1,6 +1,5 @@
 package sk.upjs.ics.paz1c.debilnicek;
 
-import com.mysql.cj.jdbc.MysqlDataSource;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -20,6 +19,7 @@ public class MysqlUlohaDaoTest {
         assertTrue(result.size()>0);
     }
     
+    /*
     @Test
     public void testNajdiUlohyPodlaKategorie() {
         UlohaDao instance = UlohaDaoFactory.INSTANCE.getUlohaDao();
@@ -31,5 +31,5 @@ public class MysqlUlohaDaoTest {
         
         assertTrue(uloha.size() > 0);
     }
-    
+    */
 }
